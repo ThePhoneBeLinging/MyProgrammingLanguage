@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
-project(MyProgrammingLanguage C)
+project(MyProgrammingLanguage)
 
-set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(MyProgrammingLanguage main.c
-        Lexer.h
-        Lexer.c
-        Node.h
-)
+add_executable(MyProgrammingLanguage main.cpp)

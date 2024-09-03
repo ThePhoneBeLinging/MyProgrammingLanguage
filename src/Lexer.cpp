@@ -58,6 +58,10 @@ void Lexer::tokenize(std::string code)
                     tokens_.push_back("string " + token);
                 }
             }
+            else if (isFloat(token))
+            {
+                tokens_.push_back("float " + token);
+            }
             else if (isInteger(token))
             {
                 tokens_.push_back("integer " + token);
@@ -99,4 +103,10 @@ bool Lexer::isInteger(const std::string &str)
 {
     std::regex intRegex(R"([+-]?[0-9]+)");
     return std::regex_match(str, intRegex);
+}
+
+bool Lexer::isFloat(const std::string &string)
+{
+    std::regex floatRegex(R"([+-]?([0-9]*[.])+[0-9]+)");
+    return std::regex_match(string, floatRegex);
 }

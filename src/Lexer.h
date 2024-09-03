@@ -25,6 +25,8 @@ private:
 
     static inline bool isInteger(const std::string &string);
 
+    static inline bool isFloat(const std::string &string);
+
     static inline std::vector<std::string> tokens_;
     static inline std::vector<std::string> keywords_;
 };

@@ -1,1 +1,1 @@
-number someNum = "5"
+number someNum = 5.1

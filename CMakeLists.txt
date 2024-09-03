@@ -7,4 +7,5 @@ add_executable(MyProgrammingLanguage main.cpp
         src/FileUtility.cpp
         src/FileUtility.h
         src/Lexer.cpp
-        src/Lexer.h)
+        src/Lexer.h
+)

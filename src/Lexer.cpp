@@ -14,8 +14,9 @@ void Lexer::initializeKeywords()
     keywords_.assign(iter, end);
 }
 
-void Lexer::tokenize(const std::string &code)
+void Lexer::tokenize(std::string code)
 {
+    code += ' ';
     bool inQuotes = false;
     bool inComment = false;
     initializeKeywords();
@@ -44,14 +45,31 @@ void Lexer::tokenize(const std::string &code)
             if (isKeyWord(token))
             {
                 tokens_.push_back(token);
-                token.clear();
-                continue;
             }
-
-
+            else if (isStringOrChar(token))
+            {
+                token.erase(std::remove(token.begin(), token.end(), '"'), token.end());
+                if (token.size() == 3)
+                {
+                    tokens_.push_back("char " + token);
+                }
+                else
+                {
+                    tokens_.push_back("string " + token);
+                }
+            }
+            else if (isInteger(token))
+            {
+                tokens_.push_back("integer " + token);
+            }
+            else
+            {
+                tokens_.push_back("identifier " + token);
+            }
+            token.clear();
+            continue;
         }
         token += character;
-
     }
 }
 
@@ -70,4 +88,15 @@ bool Lexer::isKeyWord(const std::string &token)
         }
     }
     return false;
+}
+
+bool Lexer::isStringOrChar(const std::string &str)
+{
+    return str.size() >= 2 && str.front() == '"' && str.back() == '"';
+}
+
+bool Lexer::isInteger(const std::string &str)
+{
+    std::regex intRegex(R"([+-]?[0-9]+)");
+    return std::regex_match(str, intRegex);
 }

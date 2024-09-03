@@ -12,7 +12,7 @@
 class Lexer
 {
 public:
-    static void tokenize(const std::string &code);
+    static void tokenize(std::string code);
 
     static void initializeKeywords();
 
@@ -20,6 +20,10 @@ public:
 
 private:
     static bool isKeyWord(const std::string &token);
+
+    static inline bool isStringOrChar(const std::string &string);
+
+    static inline bool isInteger(const std::string &string);
 
     static inline std::vector<std::string> tokens_;
     static inline std::vector<std::string> keywords_;

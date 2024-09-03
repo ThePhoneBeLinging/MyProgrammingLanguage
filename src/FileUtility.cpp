@@ -9,7 +9,8 @@
 std::string FileUtility::read(const std::string &path)
 {
     std::ifstream file(path);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         throw std::runtime_error("Could not open file");
     }
 
@@ -21,7 +22,8 @@ std::string FileUtility::read(const std::string &path)
 void FileUtility::write(const std::string &path, const std::string &content)
 {
     std::ofstream file(path);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         throw std::runtime_error("Could not open file");
     }
     file.write(content.c_str(), content.size());

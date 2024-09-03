@@ -1,9 +1,8 @@
 #include <iostream>
-#include "src/FileReader.h"
+#include "src/FileUtility.h"
 
 int main()
 {
-    std::cout << FileReader::read("../example.txt");
-    //std::cout << "Hello, World!" << std::endl;
+    FileUtility::write("../compiled.txt", FileUtility::read("../example.txt"));
     return 0;
 }

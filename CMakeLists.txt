@@ -4,5 +4,5 @@ project(MyProgrammingLanguage)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(MyProgrammingLanguage main.cpp
-        src/FileReader.cpp
-        src/FileReader.h)
+        src/FileUtility.cpp
+        src/FileUtility.h)

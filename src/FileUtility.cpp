@@ -11,7 +11,7 @@ std::string FileUtility::read(const std::string &path)
     std::ifstream file(path);
     if (!file.is_open())
     {
-        throw std::runtime_error("Could not open file");
+        throw std::runtime_error("Could not open file: " + path);
     }
 
     std::stringstream buffer;
@@ -24,7 +24,7 @@ void FileUtility::write(const std::string &path, const std::string &content)
     std::ofstream file(path);
     if (!file.is_open())
     {
-        throw std::runtime_error("Could not open file");
+        throw std::runtime_error("Could not open file: " + path);
     }
     file.write(content.c_str(), content.size());
 }

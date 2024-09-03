@@ -1,7 +1,9 @@
 #include <iostream>
+#include "src/FileReader.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << FileReader::read("../example.txt");
+    //std::cout << "Hello, World!" << std::endl;
     return 0;
 }

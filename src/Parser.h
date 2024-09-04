@@ -4,10 +4,14 @@
 
 #ifndef PARSER_H
 #define PARSER_H
-
+#include <string>
+#include "Item.h"
+#include <vector>
 
 class Parser
 {
+public:
+    static std::string parseToC(std::vector<Item> items);
 };
 
 

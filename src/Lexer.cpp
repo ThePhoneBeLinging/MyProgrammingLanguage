@@ -21,7 +21,7 @@ void Lexer::tokenize(std::string code)
     bool inComment = false;
     initializeKeywords();
     std::string token;
-    for (char character: code)
+    for (char character : code)
     {
         if (character == '"')
         {
@@ -36,7 +36,7 @@ void Lexer::tokenize(std::string code)
             inComment = false;
         }
 
-        if (character == ' ')
+        if (character == ' ' || character == '\n')
         {
             if (inQuotes || inComment)
             {
@@ -44,31 +44,31 @@ void Lexer::tokenize(std::string code)
             }
             if (isKeyWord(token))
             {
-                tokens_.push_back(token);
+                tokens_.emplace_back("keyword", token);
             }
             else if (isStringOrChar(token))
             {
                 token.erase(std::remove(token.begin(), token.end(), '"'), token.end());
                 if (token.size() == 3)
                 {
-                    tokens_.push_back("char " + token);
+                    tokens_.emplace_back("char", token);
                 }
                 else
                 {
-                    tokens_.push_back("string " + token);
+                    tokens_.emplace_back("string", token);
                 }
             }
             else if (isFloat(token))
             {
-                tokens_.push_back("float " + token);
+                tokens_.emplace_back("float", token);
             }
             else if (isInteger(token))
             {
-                tokens_.push_back("integer " + token);
+                tokens_.emplace_back("integer", token);
             }
             else
             {
-                tokens_.push_back("identifier " + token);
+                tokens_.emplace_back("identifier", token);
             }
             token.clear();
             continue;
@@ -77,14 +77,14 @@ void Lexer::tokenize(std::string code)
     }
 }
 
-std::vector<std::string> Lexer::getTokens()
+std::vector<Item> Lexer::getTokens()
 {
     return tokens_;
 }
 
-bool Lexer::isKeyWord(const std::string &token)
+bool Lexer::isKeyWord(const std::string& token)
 {
-    for (auto &keyword: keywords_)
+    for (auto& keyword : keywords_)
     {
         if (token == keyword)
         {
@@ -94,18 +94,18 @@ bool Lexer::isKeyWord(const std::string &token)
     return false;
 }
 
-bool Lexer::isStringOrChar(const std::string &str)
+bool Lexer::isStringOrChar(const std::string& str)
 {
     return str.size() >= 2 && str.front() == '"' && str.back() == '"';
 }
 
-bool Lexer::isInteger(const std::string &str)
+bool Lexer::isInteger(const std::string& str)
 {
     std::regex intRegex(R"([+-]?[0-9]+)");
     return std::regex_match(str, intRegex);
 }
 
-bool Lexer::isFloat(const std::string &string)
+bool Lexer::isFloat(const std::string& string)
 {
     std::regex floatRegex(R"([+-]?([0-9]*[.])+[0-9]+)");
     return std::regex_match(string, floatRegex);

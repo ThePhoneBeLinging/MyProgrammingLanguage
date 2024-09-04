@@ -1,2 +1,5 @@
 number
 =
+return
+print
++

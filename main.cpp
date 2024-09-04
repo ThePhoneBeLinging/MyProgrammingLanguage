@@ -6,9 +6,9 @@ int main()
 {
     //FileUtility::write("../compiled.txt", FileUtility::read("../example.txt"));
     Lexer::tokenize(FileUtility::read("../example.txt"));
-    for (const auto &token: Lexer::getTokens())
+    for (const auto& token : Lexer::getTokens())
     {
-        std::cout << token << std::endl;
+        std::cout << token.type() << std::endl;
     }
     return 0;
 }

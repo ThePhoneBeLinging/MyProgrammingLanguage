@@ -8,4 +8,8 @@ add_executable(MyProgrammingLanguage main.cpp
         src/FileUtility.h
         src/Lexer.cpp
         src/Lexer.h
+        src/Item.cpp
+        src/Item.h
+        src/Parser.cpp
+        src/Parser.h
 )

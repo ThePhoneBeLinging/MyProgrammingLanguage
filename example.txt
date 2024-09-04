@@ -1,1 +1,3 @@
 number someNum = 5.1
+number anotherNum = 6
+print someNum + anotherNum
